@@ -5,7 +5,7 @@ const {
     status
 } = styles
 
-export default function Status({ state }) {
+export default function Status({ state, handleStatusChange }) {
     const icon = state ? 'check' : 'close'
 
     return <label className="material-symbols-outlined">
@@ -14,6 +14,7 @@ export default function Status({ state }) {
                     name="status"
                     type="checkbox"
                     checked={state}
+                    onChange={handleStatusChange}
                 />
                 {icon}
             </label>
