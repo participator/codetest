@@ -1,10 +1,15 @@
 import { useState } from "react"
-import styles from "./page.module.css"
+// import styles from "./page.module.css"
+import Status from "./Status"
 
 export default function TodoEdit(props) {
-    const [isDone, setIsDone] = useState(false)
+    const [formData, setFormData] = useState({
+                                                status: false,
+                                                name: '',
+                                                date: '',
+                                                description: '',
+                                            })
     const { todo } = props
-    console.log(todo)
 
     const setDefaultDate = () => {
         const date = new Date()
@@ -17,32 +22,44 @@ export default function TodoEdit(props) {
         return `${year}-${monthFormatted}-${dayFormatted}`
     }
 
-    const displayIsDoneState = () => {
-        const state = isDone ?
-                        <span className="todo_edit_status todo_edit_status__done material-symbols-outlined">check</span> :
-                        <span className="todo_edit_status todo_edit_status__undone material-symbols-outlined">close</span>
+    const handleFormOnChange = ({ target }) => {
+        let { name, value } = target
+        
+        if (name !== 'status') {
+            setFormData(prevFormData => ({ ...prevFormData, [name]: value, date: setDefaultDate() }))
+        }
+    }
 
-        return state
+    const handleStatusChange = ({ target }) => {
+        let { name, checked } = target
+        
+        setFormData(prevFormData => ({ ...prevFormData, [name]: checked, date: setDefaultDate() }))
     }
 
     const saveTodoEdits = () => {
-        // get data from form
+        const {
+            status,
+            name,
+            date,
+            description
+        } = formData
         // send to api
+        console.log('send to api', status, name, date, description)
         // return to todos
+        console.log('return to todos')
     }
 
     return (
-        <form className="todo_edit">
-            { displayIsDoneState() }
+        <form className="todo_edit" onChange={handleFormOnChange}>
+            <Status state={formData.status} handleStatusChange={handleStatusChange}/>
             <div className="todo_edit_details">
-                <input className="todo_edit_details_title" maxLength={100} value='Start Code Test' />
-                <input className="todo_edit_details_modified_date" type="date" defaultValue={setDefaultDate()} min={setDefaultDate()} hidden />
-                <textarea className="todo_edit_details_description" maxLength={500} placeholder=""></textarea>
+                <input className="todo_edit_details_title" name="name" maxLength={100} defaultValue='Start Code Test' />
+                <textarea className="todo_edit_details_description" name="description" maxLength={500} placeholder=""></textarea>
             </div>
             <div className="todo_edit_actions">
                 <span
                     className="material-symbols-outlined"
-                    onClick={() => console.log('edit')}>
+                    onClick={saveTodoEdits}>
                     save
                 </span>
             </div>
