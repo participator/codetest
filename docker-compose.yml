@@ -1,0 +1,25 @@
+name: 'todos'
+services:
+  backend:
+    build: ./backend
+    ports:
+      - 3000:30001
+  
+  frontend:
+    build: ./frontend
+    ports:
+      - 5173:5173
+  
+  db:
+    image: postgres:16
+    environment:
+      - POSTGRES_PASSWORD=default_password
+      - POSTGRES_DB=todos
+    volumes:
+      - /db/data:/var/lib/postgresql/data
+  
+  db_viewer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
