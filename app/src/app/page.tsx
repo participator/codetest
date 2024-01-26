@@ -8,7 +8,8 @@ import MultiSelect from "./components/MultiSelect"
 
 const {
   main,
-  main_heading
+  main_heading,
+  main_separator
 } = styles
 
 export default function Home() {
@@ -17,7 +18,7 @@ export default function Home() {
       <h1 className={main_heading}>Todos</h1>
 
       <MultiSelect />
-      <hr></hr>
+      <hr className={main_separator}></hr>
       <Todo />
       <TodoEdit />
     </main>

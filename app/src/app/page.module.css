@@ -7,3 +7,6 @@
 .main_heading {
     font-size: 3.5rem;
 }
+.main_separator {
+    opacity: 0.3;
+}
