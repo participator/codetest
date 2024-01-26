@@ -1,9 +1,16 @@
-import styles from "./page.module.css"
+import styles from "./multiselect.module.css"
 
-export default function MultiSelect(props) {
-    console.log('multiSelect', props)
+export default function MultiSelect() {
+  const {
+    multiselect,
+    multiselect_icon,
+  } = styles
 
-    return (
-      <div><span className="material-symbols-outlined">check_box_outline_blank</span></div>
-    )
+  return (
+    <div className={multiselect}>
+      <span className={`${multiselect_icon} material-symbols-outlined`}>
+        check_box_outline_blank
+      </span>
+    </div>
+  )
 }
