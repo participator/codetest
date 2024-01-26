@@ -1,7 +1,10 @@
+'use client'
+
 import Image from "next/image"
 import styles from "./page.module.css"
-import Todo from "./Components/Todo"
-import SelectAll from "./Components/SelectAll"
+import Todo from "./components/Todo"
+import TodoEdit from "./components/TodoEdit"
+import SelectAll from "./components/SelectAll"
 
 export default function Home() {
   return (
@@ -11,6 +14,7 @@ export default function Home() {
       <SelectAll />
       <hr></hr>
       <Todo />
+      <TodoEdit />
     </main>
   )
 }
