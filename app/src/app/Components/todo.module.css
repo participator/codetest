@@ -1,15 +1,20 @@
 .todo {
     display: grid;
+    grid-template-areas: "status details actions"
+                            "expand expand expand";
     grid-template-columns: 4rem 1fr 6rem;
-    gap: 1rem;
+    grid-template-rows: 4rem 1fr;
+    gap: 0.5rem;
     width: 100%;
 }
 .todo_status {
+    grid-area: status;
     font-size: 2.5rem;
     margin-top: auto;
     margin-bottom: auto;
 }
 .todo_details {
+    grid-area: details;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -21,5 +26,12 @@
     font-size: 0.9rem;
 }
 .todo_actions {
+    grid-area: actions;
+    margin-top: auto;
+    margin-bottom: auto;
     width: 4rem;
+}
+.todo_expand {
+    grid-area: expand;
+    text-align: center;
 }

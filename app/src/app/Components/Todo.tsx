@@ -1,3 +1,4 @@
+import Action from "./Action"
 import styles from "./todo.module.css"
 
 const {
@@ -6,7 +7,8 @@ const {
     todo_details,
     todo_details_title,
     todo_details_date,
-    todo_actions
+    todo_actions,
+    todo_expand
 } = styles
 
 export default function Todo(props) {
@@ -26,30 +28,28 @@ export default function Todo(props) {
             </div>
             <div className={todo_actions}>
                 <div>
-                    <span 
-                        className="material-symbols-outlined"
-                        onClick={() => console.log('displayEditForm')}>
-                            edit
-                    </span>
-                    <span 
-                        className="material-symbols-outlined"
-                        onClick={() => console.log('send delete to api')}>
-                            delete
-                    </span>
+                    <Action 
+                            name="edit"
+                            handleAction={() => console.log('displayEditForm')}
+                            />
+                    <Action 
+                            name="delete"
+                            handleAction={() => console.log('send delete to api')}
+                            />
                     {
                         displayMultiSelect &&
-                        <span
-                            className="material-symbols-outlined"
-                            onClick={() => console.log('display when multiselect is checked')}>
-                                check_box_outline_blank
-                        </span>
+                        <Action 
+                            name="check_box_outline_blank"
+                            handleAction={() => console.log('display when multiselect is checked')}
+                            />
                     }
                 </div>
-                <span 
-                    className="todo_actions_more material-symbols-outlined">
-                        expand_more
-                </span>
             </div>
+                <Action
+                    styles={todo_expand}
+                    name="expand_more" 
+                    handleAction={() => console.log('display details')}
+                    />
         </div>
     )
 }
