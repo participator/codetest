@@ -1,0 +1,7 @@
+.action {
+    border: 1px solid rgba(128, 128, 128, 0.2);
+    cursor: pointer;
+}
+.action:hover {
+    border: 1px solid rgba(128, 128, 128, 0.6);
+}

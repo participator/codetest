@@ -1,4 +1,9 @@
 import { MouseEventHandler } from "react"
+import styles from './action.module.css'
+
+const {
+    action
+} = styles
 
 type ActionParams = {
     name: string
@@ -9,12 +14,12 @@ type ActionParams = {
 export default function Action({ name, handleAction, styles }: ActionParams) {
     const element = handleAction ?
         <span
-            className={`material-symbols-outlined ${styles}`}
+            className={`material-symbols-outlined ${action} ${styles}`}
             onClick={handleAction}>
             {name}
         </span> :
         <span
-            className={`material-symbols-outlined ${styles}`}>
+            className={`material-symbols-outlined ${action} ${styles}`}>
             {name}
         </ span>
 
