@@ -1,0 +1,28 @@
+.todo_edit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    z-index: 1;
+}
+.todo_edit_form {
+    background-color: black;
+    padding: .2rem 0.2rem;
+}
+.todo_edit_details {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.todo_edit_details_title {
+    margin-bottom: 1rem;
+}
+.todo_edit_details_description {
+    height: 10rem;
+    width: 30rem;
+}
+.todo_edit_actions {
+    padding: 0.5rem;
+    text-align: right;
+}

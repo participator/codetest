@@ -5,11 +5,14 @@ import styles from "./page.module.css"
 import Todo from "./components/Todo"
 import TodoEdit from "./components/TodoEdit"
 import MultiSelect from "./components/MultiSelect"
+import Action from "./components/Action"
 
 const {
   main,
   main_heading,
-  main_separator
+  main_separator,
+  main_modal,
+  main_add
 } = styles
 
 export default function Home() {
@@ -20,7 +23,14 @@ export default function Home() {
       <MultiSelect />
       <hr className={main_separator}></hr>
       <Todo />
-      <TodoEdit />
+      <Action
+        name="add"
+        styles={main_add}
+        handleAction={ () => console.log('create action')}
+         />
+         <div className={main_modal}>
+           <TodoEdit />
+         </div>
     </main>
   )
 }
