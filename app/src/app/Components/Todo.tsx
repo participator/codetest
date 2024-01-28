@@ -29,13 +29,13 @@ export default function Todo(props) {
             <div className={todo_actions}>
                 <div>
                     <Action 
-                            name="edit"
-                            handleAction={() => console.log('displayEditForm')}
-                            />
+                        name="edit"
+                        handleAction={() => console.log('displayEditForm')}
+                        />
                     <Action 
-                            name="delete"
-                            handleAction={() => console.log('send delete to api')}
-                            />
+                        name="delete"
+                        handleAction={() => console.log('send delete to api')}
+                        />
                     {
                         displayMultiSelect &&
                         <Action 
