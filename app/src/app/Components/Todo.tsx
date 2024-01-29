@@ -18,12 +18,23 @@ const {
 export default function Todo({id, description, date, done, title, displayMultiSelect, displayEditForm }) {
     const [displayDescription, setDisplayDescription] = useState(false)
 
+    const formatDate = (date) => {
+        const dateObject = new Date(date)
+        const dateFormatted = dateObject.toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "short",
+            day: "2-digit"
+        })
+
+        return dateFormatted
+    }
+
     return (
         <div className={`${todo} ${displayDescription && todo__description}`}>
-            <span className={`material-symbols-outlined ${todo_done}`}>{ done ? 'check' : 'close' }</span>
+            <span className={`material-symbols-outlined ${todo_done}`}>{ done ? "check" : "close" }</span>
             <div className={todo_details}>
                 <p className={todo_details_title}>{title}</p>
-                <p className={todo_details_date}>{date}</p>
+                <p className={todo_details_date}>{formatDate(date)}</p>
             </div>
             <div className={todo_actions}>
                 <div>
@@ -49,7 +60,7 @@ export default function Todo({id, description, date, done, title, displayMultiSe
             </p>
             <Action
                 styles={todo_expand}
-                name={`${ displayDescription ? 'expand_less' : 'expand_more' }`}
+                name={`${ displayDescription ? "expand_less" : "expand_more" }`}
                 handleAction={() => {
                     displayDescription ? setDisplayDescription(false) : setDisplayDescription(true)
                 }}
