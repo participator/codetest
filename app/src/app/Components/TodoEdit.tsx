@@ -59,6 +59,7 @@ export default function TodoEdit({ id, todos, editTodo, hideEditForm }) {
             id,
             done,
             date,
+            deleted: false,
             description,
             title
         }
