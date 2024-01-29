@@ -6,6 +6,8 @@ import Action from "./Action"
 const {
     todo_create,
     todo_create_form,
+    todo_create_form_description,
+    todo_create_actions,
     todo_create_submit
 } = styles
 
@@ -20,7 +22,7 @@ export default function TodoCreate({createTodo, closeCreateTodoModal}) {
         setTodo({ ...todo, [name]: value })
     }
 
-    const handleOnSubmit = (event) => {
+    const handleCreate = (event) => {
         event.preventDefault()
         const {
             description,
@@ -40,19 +42,31 @@ export default function TodoCreate({createTodo, closeCreateTodoModal}) {
         // return to home page
         closeCreateTodoModal()
     }
+
+    const handleCreateCancel = () => {
+        closeCreateTodoModal()
+    }
     
     return (
         <div className={todo_create}>
-            <form className={todo_create_form} onChange={handleOnChange} onSubmit={handleOnSubmit}>
+            <form className={todo_create_form} onChange={handleOnChange}>
+                <h2>Create Todo</h2>
                 <label htmlFor="title">Title</label>
-                <input name="title" />
+                <input name="title" maxLength={100} />
                 <label htmlFor="description">Description</label>
-                <textarea name="description" />
-                <Action
-                    name="add"
-                    styles={todo_create_submit}
-                    handleAction={handleOnSubmit} 
-                    />
+                <textarea className={todo_create_form_description} name="description" maxLength={500} />
+                <div className={todo_create_actions}>
+                    <Action
+                        name="add"
+                        styles={todo_create_submit}
+                        handleAction={handleCreate} 
+                        />
+                    
+                    <Action
+                            name="cancel"
+                            handleAction={handleCreateCancel}
+                            />
+                </div>
             </form>
         </div>
     )

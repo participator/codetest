@@ -12,6 +12,13 @@
     background-color: black;
     padding: 1rem;
 }
+.todo_create_form_description {
+    height: 10rem;
+    width: 32rem;
+}
+.todo_create_actions {
+    margin-left: auto;
+}
 .todo_create_submit {
     background-color: transparent;
     border: 1px solid rgba(128, 128, 128, 0.2);
