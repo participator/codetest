@@ -7,6 +7,12 @@
 .main_heading {
     font-size: 3.5rem;
 }
+.main_bulk_actions {
+    margin-left: auto;
+}
+.main_todos_delete {
+    font-size: 2.5rem;
+}
 .main_separator {
     opacity: 0.3;
 }

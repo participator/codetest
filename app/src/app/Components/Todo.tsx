@@ -15,8 +15,16 @@ const {
     todo_expand
 } = styles
 
-export default function Todo({id, description, date, done, title, deleteTodo, displayMultiSelect, displayEditForm }) {
+export default function Todo({
+    data,
+    deleteTodo,
+    displayEditForm,
+    displayMultiSelect,
+    displayMultiSelectChecked,
+    setDisplayMultiSelectChecked,
+    handleMultiSelect }) {
     const [displayDescription, setDisplayDescription] = useState(false)
+    const { date, description, done, title} = data
 
     const formatDate = (date) => {
         const dateObject = new Date(date)
@@ -47,10 +55,27 @@ export default function Todo({id, description, date, done, title, deleteTodo, di
                         handleAction={deleteTodo}
                         />
                     {
-                        displayMultiSelect &&
+                        displayMultiSelect && 
+                        displayMultiSelectChecked() &&
+                        <Action 
+                            name="check_box"
+                            handleAction={() => {
+                                    const nextState = false
+                                    setDisplayMultiSelectChecked(nextState)
+                                    handleMultiSelect(false)
+                            }}
+                            />
+                    }
+                    {
+                        displayMultiSelect && 
+                        !displayMultiSelectChecked() &&
                         <Action 
                             name="check_box_outline_blank"
-                            handleAction={() => console.log('display when multiselect is checked')}
+                            handleAction={() => {
+                                    const nextState = true
+                                    setDisplayMultiSelectChecked(nextState)
+                                    handleMultiSelect(true)
+                            }}
                             />
                     }
                 </div>

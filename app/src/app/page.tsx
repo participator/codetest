@@ -23,8 +23,9 @@ type Todos = Todo[]
 const {
   main,
   main_heading,
+  main_bulk_actions,
+  main_todos_delete,
   main_separator,
-  main_modal,
   main_add
 } = styles
 
@@ -60,11 +61,46 @@ export default function Home() {
   const [displayMultiSelects, setDisplayMultiSelects] = useState(false)
   const [todoEditId, setTodoEditId] = useState<number | null>(null)
   const [displayCreateModal, setDisplayCreateModal] = useState(false)
+  const [todosToDelete, setTodosToDelete] = useState<Set<number>>(new Set())
 
-  const handleMultiSelect = () => {
-    displayMultiSelects ?
-      setDisplayMultiSelects(false) :
-      setDisplayMultiSelects(true)
+  const handleDisplayMultiSelect = () => {
+    const toggleDisplay = !displayMultiSelects
+    setDisplayMultiSelects(toggleDisplay)
+
+    toggleDisplay && todosToDelete.clear()
+  }
+
+  const selectTodo = (id: number) => {
+    const updated = new Set(todosToDelete)
+    updated.add(id)
+    setTodosToDelete(updated)
+  }
+  
+  const deselectTodo = (id: number) => {
+    const updated = new Set(todosToDelete)
+    updated.delete(id)
+    setTodosToDelete(updated)
+  }
+
+  const deleteMultiSelectTodos = () => {
+    const todosToDeleteUpdated = new Set(todosToDelete)
+    const todosUpdated = todos.map(todo => {
+      const {id} = todo
+      
+      if (todosToDelete.has(id)) {
+        todosToDeleteUpdated.delete(id)
+        
+        return {
+          ...todo,
+          deleted: true
+        }
+      }
+      
+      return todo
+    })
+    
+    setTodosToDelete(todosToDeleteUpdated)
+    setTodos(todosUpdated)
   }
 
   const deleteTodo = (id: number) => {
@@ -107,31 +143,45 @@ export default function Home() {
     <main className={main}>
       <h1 className={main_heading}>Todos</h1>
 
-      <MultiSelect handleOnClick={handleMultiSelect} display={displayMultiSelects} />
+      <div className={main_bulk_actions}>
+
+        { 
+          displayMultiSelects && 
+          <Action
+            name="delete"
+            styles={main_todos_delete}
+            handleAction={deleteMultiSelectTodos}
+            />
+        }
+        <MultiSelect handleOnClick={handleDisplayMultiSelect} display={displayMultiSelects} />
+      </div>
       <hr className={main_separator}></hr>
       {
         todos && todos.filter(todo => todo.deleted === false).map((todo) => {
-          const {
-            id,
-            date,
-            description,
-            done,
-            title
-          } = todo
+          const {id} = todo
 
           return <Todo
             key={id}
-            id={id}
-            date={date}
-            description={description}
-            done={done}
-            title={title}
+            data={todo}
             deleteTodo={() => {
               deleteTodo(id)
             }}
-            displayMultiSelect={displayMultiSelects}
             displayEditForm={() => {
               setTodoEditId(id)
+            }}
+            displayMultiSelect={displayMultiSelects}
+            displayMultiSelectChecked={() => {
+              return todosToDelete.has(id)
+            }}
+            setDisplayMultiSelectChecked={(state) => {
+              state ?
+                deselectTodo(id) :
+                selectTodo(id)
+            }} 
+            handleMultiSelect={(checked) => {
+              checked ?
+                selectTodo(id) :
+                deselectTodo(id)
             }}
           />
         })
