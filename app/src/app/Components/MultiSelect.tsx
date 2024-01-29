@@ -1,6 +1,7 @@
+import Action from "./Action"
 import styles from "./multiselect.module.css"
 
-export default function MultiSelect() {
+export default function MultiSelect({display, handleOnClick}) {
   const {
     multiselect,
     multiselect_icon,
@@ -8,9 +9,11 @@ export default function MultiSelect() {
 
   return (
     <div className={multiselect}>
-      <span className={`${multiselect_icon} material-symbols-outlined`}>
-        check_box_outline_blank
-      </span>
+      <Action
+        name={ display ? "check_box" : "check_box_outline_blank" }
+        handleAction={handleOnClick}
+        styles={multiselect_icon}
+        />
     </div>
   )
 }
