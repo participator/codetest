@@ -5,10 +5,10 @@ const {
     status
 } = styles
 
-export default function Status({ state, handleStatusChange }) {
+export default function Status({ state, styles, handleStatusChange }) {
     const icon = state ? 'check' : 'close'
 
-    return <label className="material-symbols-outlined">
+    return <label className={`material-symbols-outlined ${styles}`}>
                 <input
                     className={`${status} ${state ? 'status__done' : 'status__undone'}`}
                     name="done"
