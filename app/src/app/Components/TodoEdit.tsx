@@ -66,7 +66,6 @@ export default function TodoEdit({ id, todos, editTodo, hideEditForm }) {
         editTodo(todos, todoEdited)
         
         // return to todos
-        console.log('return to todos')
         hideEditForm()
     }
 

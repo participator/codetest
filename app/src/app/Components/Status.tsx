@@ -11,7 +11,7 @@ export default function Status({ state, handleStatusChange }) {
     return <label className="material-symbols-outlined">
                 <input
                     className={`${status} ${state ? 'status__done' : 'status__undone'}`}
-                    name="status"
+                    name="done"
                     type="checkbox"
                     checked={state}
                     onChange={handleStatusChange}
