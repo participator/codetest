@@ -7,6 +7,7 @@ import MultiSelect from "./components/MultiSelect"
 import Action from "./components/Action"
 import { useState } from "react"
 import Modal from "./components/Modal"
+import Create from "./components/TodoCreate"
 
 type Todo = {
   id: number
@@ -55,9 +56,10 @@ const mockTodos = [
 ]
 
 export default function Home() {
-  const [todos, setTodos] = useState<Todos | null>(mockTodos)
+  const [todos, setTodos] = useState<Todos>(mockTodos)
   const [displayMultiSelects, setDisplayMultiSelects] = useState(false)
   const [todoEditId, setTodoEditId] = useState<number | null>(null)
+  const [displayCreateModal, setDisplayCreateModal] = useState(false)
 
   const handleMultiSelect = () => {
     displayMultiSelects ?
@@ -66,7 +68,6 @@ export default function Home() {
   }
 
   const deleteTodo = (id: number) => {
-    if (!todos) return
     const todosUpdated = todos.map(todo => {
       if (todo.id === id) {
         return {
@@ -90,6 +91,12 @@ export default function Home() {
     })
 
     setTodos(todosUpdated)
+  }
+
+  const createTodo = (todos: Todos, todo) => {
+    const newTodos = [...todos, todo]
+
+    setTodos(newTodos)
   }
 
   const hideEditForm = () => {
@@ -132,7 +139,9 @@ export default function Home() {
       <Action
         name="add"
         styles={main_add}
-        handleAction={() => console.log('create action')}
+        handleAction={() => {
+          setDisplayCreateModal(true)
+        }}
       />
       {
         typeof todoEditId === "number" &&
@@ -142,6 +151,17 @@ export default function Home() {
             todos={todos}
             editTodo={editTodo}
             hideEditForm={hideEditForm}
+          />
+        </Modal>
+      }
+      {
+        displayCreateModal &&
+        <Modal>
+          <Create
+            createTodo={(todo) => {
+              createTodo(todos, todo)
+            }}
+            closeCreateTodoModal={() => setDisplayCreateModal(false)}
           />
         </Modal>
       }
