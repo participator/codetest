@@ -15,7 +15,7 @@ const {
     todo_expand
 } = styles
 
-export default function Todo({id, description, date, done, title, displayMultiSelect, displayEditForm }) {
+export default function Todo({id, description, date, done, title, deleteTodo, displayMultiSelect, displayEditForm }) {
     const [displayDescription, setDisplayDescription] = useState(false)
 
     const formatDate = (date) => {
@@ -44,7 +44,7 @@ export default function Todo({id, description, date, done, title, displayMultiSe
                         />
                     <Action 
                         name="delete"
-                        handleAction={() => console.log(`send delete ${id} to api`)}
+                        handleAction={deleteTodo}
                         />
                     {
                         displayMultiSelect &&
