@@ -12,14 +12,14 @@ const {
     todo_edit_actions
 } = styles
 
-export default function TodoEdit(props) {
+export default function TodoEdit({ id, todos, editTodo, hideEditForm }) {
+    const todo = todos.filter(todo => todo.id === id)[0]
     const [formData, setFormData] = useState({
-        status: false,
-        name: '',
-        date: '',
-        description: '',
+        done: todo.done,
+        date: todo.date,
+        description: todo.description,
+        title: todo.title,
     })
-    const { todo } = props
 
     const setDefaultDate = () => {
         const date = new Date()
@@ -35,7 +35,7 @@ export default function TodoEdit(props) {
     const handleFormOnChange = ({ target }) => {
         let { name, value } = target
 
-        if (name !== 'status') {
+        if (name !== 'done') {
             setFormData(prevFormData => ({ ...prevFormData, [name]: value, date: setDefaultDate() }))
         }
     }
@@ -48,31 +48,43 @@ export default function TodoEdit(props) {
 
     const saveEdits = () => {
         const {
-            status,
-            name,
+            done,
             date,
-            description
+            description,
+            title,
         } = formData
-        // send to api
-        console.log('send to api', status, name, date, description)
+
+        // save changes
+        const todoEdited = {
+            id,
+            done,
+            date,
+            description,
+            title
+        }
+
+        editTodo(todos, todoEdited)
+        
         // return to todos
         console.log('return to todos')
+        hideEditForm()
     }
 
     const cancelEdits = () => {
         // return to todos
-        console.log('return to todos')
+        hideEditForm()
     }
 
     return (
         <div className={todo_edit}>
             <form className={todo_edit_form} onChange={handleFormOnChange}>
-                <Status state={formData.status} handleStatusChange={handleStatusChange} />
+                <Status state={formData.done} handleStatusChange={handleStatusChange} />
                 <div className={todo_edit_details}>
-                    <label htmlFor="name">Name</label>
-                    <input className={todo_edit_details_title} name="name" maxLength={100} defaultValue='Start Code Test' />
+                    <label htmlFor="title">Title</label>
+                    <input className={todo_edit_details_title} name="title" maxLength={100} defaultValue={formData.title} />
+
                     <label htmlFor="description">Description</label>
-                    <textarea className={todo_edit_details_description} name="description" maxLength={500} placeholder=""></textarea>
+                    <textarea className={todo_edit_details_description} name="description" maxLength={500} placeholder="" defaultValue={formData.description} />
                 </div>
                 <div className={todo_edit_actions}>
                     <Action

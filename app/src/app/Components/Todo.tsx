@@ -15,7 +15,7 @@ const {
     todo_expand
 } = styles
 
-export default function Todo({id, description, date, done, title, displayMultiSelect }) {
+export default function Todo({id, description, date, done, title, displayMultiSelect, displayEditForm }) {
     const [displayDescription, setDisplayDescription] = useState(false)
 
     return (
@@ -29,11 +29,11 @@ export default function Todo({id, description, date, done, title, displayMultiSe
                 <div>
                     <Action 
                         name="edit"
-                        handleAction={() => console.log('displayEditForm')}
+                        handleAction={displayEditForm}
                         />
                     <Action 
                         name="delete"
-                        handleAction={() => console.log('send delete to api')}
+                        handleAction={() => console.log(`send delete ${id} to api`)}
                         />
                     {
                         displayMultiSelect &&
