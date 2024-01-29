@@ -1,6 +1,5 @@
 'use client'
 
-import Image from "next/image"
 import styles from "./page.module.css"
 import Todo from "./components/Todo"
 import TodoEdit from "./components/TodoEdit"
@@ -55,16 +54,16 @@ const mockTodos = [
 ]
 
 export default function Home() {
-  const [todos, setTodos] = useState<Todos|null>(mockTodos)
+  const [todos, setTodos] = useState<Todos | null>(mockTodos)
   const [displayMultiSelects, setDisplayMultiSelects] = useState(false)
-  const [todoEditId, setTodoEditId] = useState<number|null>(null)
+  const [todoEditId, setTodoEditId] = useState<number | null>(null)
 
   const handleMultiSelect = () => {
     displayMultiSelects ?
       setDisplayMultiSelects(false) :
       setDisplayMultiSelects(true)
   }
-  
+
   const deleteTodo = (id: number) => {
     if (!todos) return
     const todosUpdated = todos.map(todo => {
@@ -99,7 +98,7 @@ export default function Home() {
   return (
     <main className={main}>
       <h1 className={main_heading}>Todos</h1>
-      
+
       <MultiSelect handleOnClick={handleMultiSelect} display={displayMultiSelects} />
       <hr className={main_separator}></hr>
       {
@@ -112,38 +111,38 @@ export default function Home() {
             title
           } = todo
 
-          return  <Todo 
-                    key={id}
-                    id={id}
-                    date={date}
-                    description={description}
-                    done={done}
-                    title={title}
-                    deleteTodo={() => {
-                      deleteTodo(id)
-                    }}
-                    displayMultiSelect={displayMultiSelects}
-                    displayEditForm={() => { 
-                      setTodoEditId(id)
-                    }}
-                    />
+          return <Todo
+            key={id}
+            id={id}
+            date={date}
+            description={description}
+            done={done}
+            title={title}
+            deleteTodo={() => {
+              deleteTodo(id)
+            }}
+            displayMultiSelect={displayMultiSelects}
+            displayEditForm={() => {
+              setTodoEditId(id)
+            }}
+          />
         })
       }
       <Action
         name="add"
         styles={main_add}
-        handleAction={ () => console.log('create action')}
-         />
+        handleAction={() => console.log('create action')}
+      />
       {
-         typeof todoEditId === "number"  && <div className={main_modal}>
-                        <TodoEdit 
-                          id={todoEditId}
-                          todos={todos}
-                          editTodo={editTodo}
-                          hideEditForm={hideEditForm}
-                          />
-                      </div>
-          }
+        typeof todoEditId === "number" && <div className={main_modal}>
+          <TodoEdit
+            id={todoEditId}
+            todos={todos}
+            editTodo={editTodo}
+            hideEditForm={hideEditForm}
+          />
+        </div>
+      }
     </main>
   )
 }
