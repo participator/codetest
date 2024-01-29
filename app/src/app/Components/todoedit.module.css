@@ -7,7 +7,10 @@
 }
 .todo_edit_form {
     background-color: black;
-    padding: .2rem 0.2rem;
+    padding: 1rem;
+}
+.todo_edit_form_heading {
+    justify-self: center;
 }
 .todo_edit_details {
     display: flex;
@@ -15,12 +18,15 @@
     margin-top: 1rem;
     margin-bottom: 1rem;
 }
+.todo_edit_details_status {
+    margin-bottom: 1rem;
+}
 .todo_edit_details_title {
     margin-bottom: 1rem;
 }
 .todo_edit_details_description {
     height: 10rem;
-    width: 30rem;
+    width: 32rem;
 }
 .todo_edit_actions {
     padding: 0.5rem;

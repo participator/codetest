@@ -7,7 +7,9 @@ import { setDefaultDate } from "../helpers/setDefaultDate"
 const {
     todo_edit,
     todo_edit_form,
+    todo_edit_form_heading,
     todo_edit_details,
+    todo_edit_details_status,
     todo_edit_details_title,
     todo_edit_details_description,
     todo_edit_actions
@@ -68,8 +70,15 @@ export default function TodoEdit({ id, todos, editTodo, hideEditForm }) {
     return (
         <div className={todo_edit}>
             <form className={todo_edit_form} onChange={handleFormOnChange}>
-                <Status state={formData.done} handleStatusChange={handleStatusChange} />
+                <h2 className={todo_edit_form_heading}>Edit Todo</h2>
                 <div className={todo_edit_details}>
+                    <p>Done</p>
+                    <Status 
+                        state={formData.done}
+                        styles={todo_edit_details_status}
+                        handleStatusChange={handleStatusChange} 
+                        />
+
                     <label htmlFor="title">Title</label>
                     <input className={todo_edit_details_title} name="title" maxLength={100} defaultValue={formData.title} />
 
