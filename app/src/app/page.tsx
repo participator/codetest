@@ -6,6 +6,7 @@ import TodoEdit from "./components/TodoEdit"
 import MultiSelect from "./components/MultiSelect"
 import Action from "./components/Action"
 import { useState } from "react"
+import Modal from "./components/Modal"
 
 type Todo = {
   id: number
@@ -134,14 +135,15 @@ export default function Home() {
         handleAction={() => console.log('create action')}
       />
       {
-        typeof todoEditId === "number" && <div className={main_modal}>
+        typeof todoEditId === "number" &&
+        <Modal>
           <TodoEdit
             id={todoEditId}
             todos={todos}
             editTodo={editTodo}
             hideEditForm={hideEditForm}
           />
-        </div>
+        </Modal>
       }
     </main>
   )
