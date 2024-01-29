@@ -11,7 +11,7 @@
 .todo__description {
     grid-template-rows: 4rem 1fr 1rem;
 }
-.todo_status {
+.todo_done {
     grid-area: status;
     font-size: 2.5rem;
     margin-top: auto;
@@ -33,7 +33,7 @@
     grid-area: actions;
     margin-top: auto;
     margin-bottom: auto;
-    width: 4rem;
+    width: 5rem;
 }
 .todo_description {
     grid-area: description;

@@ -5,7 +5,7 @@ import styles from "./todo.module.css"
 const {
     todo,
     todo__description,
-    todo_status,
+    todo_done,
     todo_details,
     todo_details_title,
     todo_details_date,
@@ -15,16 +15,15 @@ const {
     todo_expand
 } = styles
 
-export default function Todo(props) {
+export default function Todo({id, description, date, done, title, displayMultiSelect }) {
     const [displayDescription, setDisplayDescription] = useState(false)
-    const { displayMultiSelect } = props
 
     return (
         <div className={`${todo} ${displayDescription && todo__description}`}>
-            <span className={`material-symbols-outlined ${todo_status}`}>{ true ? 'check' : 'close' }</span>
+            <span className={`material-symbols-outlined ${todo_done}`}>{ done ? 'check' : 'close' }</span>
             <div className={todo_details}>
-                <p className={todo_details_title}>Start Code Test</p>
-                <p className={todo_details_date}>Jan 24, 2024</p>
+                <p className={todo_details_title}>{title}</p>
+                <p className={todo_details_date}>{date}</p>
             </div>
             <div className={todo_actions}>
                 <div>
@@ -46,7 +45,7 @@ export default function Todo(props) {
                 </div>
             </div>
             <p className={`${todo_description} ${displayDescription && todo_description__visible}`}>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                {description}
             </p>
             <Action
                 styles={todo_expand}
