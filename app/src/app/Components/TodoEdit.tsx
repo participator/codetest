@@ -2,6 +2,7 @@ import { useState } from "react"
 import styles from "./todoedit.module.css"
 import Status from "./Status"
 import Action from "./Action"
+import { setDefaultDate } from "../helpers/setDefaultDate"
 
 const {
     todo_edit,
@@ -20,17 +21,6 @@ export default function TodoEdit({ id, todos, editTodo, hideEditForm }) {
         description: todo.description,
         title: todo.title,
     })
-
-    const setDefaultDate = () => {
-        const date = new Date()
-        const day = date.getDate() + 1
-        const dayFormatted = day < 10 ? `0${day}` : day
-        const month = date.getMonth() + 1
-        const monthFormatted = month < 10 ? `0${month}` : month
-        const year = date.getFullYear()
-
-        return `${year}-${monthFormatted}-${dayFormatted}`
-    }
 
     const handleFormOnChange = ({ target }) => {
         let { name, value } = target
