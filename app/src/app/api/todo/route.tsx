@@ -8,6 +8,7 @@ export async function GET() {
   return Response.json(todos)
 }
 
+// POST /api/todo
 export async function POST(request) {
   const todo = await request.json()
 
@@ -19,21 +20,24 @@ export async function POST(request) {
   return Response.json(JSON.stringify(created))
 }
 
+// PUT /api/todo
 export async function PUT(request) {
   const todo = await request.json()
   const {id} = todo
 
-  // Find todo in db
-  // const dbTodo = await db.find(id)
-  const updated = {
-    ///...dbTodo
-    ...todo
-  }
+  const updated = await prisma.todo.update({
+    where: { id: id},
+    data: {
+      ...todo,
+      dateCreated: new Date(todo.dateCreated),
+      dateModified: new Date(todo.dateModified)
+    }
+  })
 
   // Save todo in db
   //const success = await db.save(id, updated)
 
-  return Response.json("Updated")
+  return Response.json(updated)
 }
 
 export async function DELETE(request) {

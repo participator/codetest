@@ -19,7 +19,7 @@ export default function TodoEdit({ id, todos, editTodo, hideEditForm }) {
     const todo = todos.filter(todo => todo.id === id)[0]
     const [formData, setFormData] = useState({
         done: todo.done,
-        dateModified: todo.dateModified || todo.dateCreated,
+        dateModified: todo.dateModified,
         description: todo.description,
         title: todo.title,
     })
@@ -51,7 +51,6 @@ export default function TodoEdit({ id, todos, editTodo, hideEditForm }) {
             id,
             done,
             dateModified,
-            deleted: false,
             description,
             title
         }

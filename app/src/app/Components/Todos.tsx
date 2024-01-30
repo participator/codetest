@@ -92,16 +92,27 @@ export default function Todos({todos, handleHideTodos, setTodos}) {
 
   const editTodo = (todos: Todos, todoEdited: Todo) => {
     const { id } = todoEdited
-    const todosUpdated = todos.map(todo => {
-      return todo.id === id ?
-        { 
-          ...todo,
-          ...todoEdited
-        } :
-        todo
+    const originalTodo = todos.filter(todo => todo.id === id)[0]
+    const edited = {
+      ...originalTodo,
+      ...todoEdited
+    }
+
+    fetch('api/todo', {
+      method: 'PUT',
+      body: JSON.stringify(edited)
+    }).then(async (response) => {
+      const updated = await response.json()
+
+      const todosUpdated = todos.map(todo => {
+        return todo.id === id ?
+          updated :
+          todo
+      })
+  
+      setTodos(todosUpdated)
     })
 
-    setTodos(todosUpdated)
   }
 
   const createTodo = (todos: Todos, todo) => {
