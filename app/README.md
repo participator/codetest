@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Todos - Code Test
+
+## Technology
+This application uses NextJS and Postgres (with Prisma).
+
 
 ## Getting Started
+The best way to run this project is with Docker Compose.
 
-First, run the development server:
+At the root of the project:
+1. Run `docker compose up` to run and see logs
+1. or run `docker compose up -d` to run only
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Structure
+This project includes all frontend, backend, and database code.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Frontend
+The frontend code includes everything except the `./src/api` folder
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Backend
+The backend code is in `./src/api`
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Database
+The backend code interacts with the database via the ORM prisma.  The prisma code can be found in its folder `./src/prisma`
 
-## Learn More
+This is where the db seed file (`seed.ts`) is and the db schema file (`schema.prisma`).
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## References
+- [Install & Use NextJS](https://nextjs.org/docs/getting-started/installation)
+- [Set up Google Material Icons](https://dev.to/sabbirsobhani/google-icons-from-google-fonts-with-nextjs-11pa)
+- [Google Material Icons](https://fonts.google.com/icons?selected=Material+Symbols+Outlined:edit:FILL@0;wght@400;GRAD@0;opsz@24&icon.query=edit)
+- [Combine state into one object](https://www.freecodecamp.org/news/how-to-build-forms-in-react/)
+- [Review HTTP methods](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods)
+- [ORM Prisma Docs](https://www.prisma.io/docs/getting-started)
+- [Prisma in NextJS Examples](https://github.com/prisma/prisma-examples/blob/latest/typescript/rest-nextjs-api-routes/src/pages/api/filterPosts.ts)
+- [Docker: How to use postgres, adminer, & node in containers](https://hub.docker.com/_/postgres)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Extras
 
-## Deploy on Vercel
+### Data Model
+I typicaly create an idea of the data modals needed for an application before coding.  [Here is a data modal](https://docs.google.com/drawings/d/1UTzKAbcyrbcMjdFivp7HZZyDQtH8KJqhrUsU35pSmus/edit) for this todo code test.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Design
+Similarly, I typically start applications with a little design work to create an idea of how data will be display and interacted with.  [Here is the design](https://codetestdesign.framer.website/) created for this todo code test.
