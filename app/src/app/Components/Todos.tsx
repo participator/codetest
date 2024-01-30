@@ -25,7 +25,7 @@ const {
   main_bulk_actions,
   main_todos_delete,
   main_separator,
-  main_add
+  main_create
 } = styles
 
 export default function Todos({todos, handleHideTodos, setTodos}) {
@@ -166,7 +166,7 @@ export default function Todos({todos, handleHideTodos, setTodos}) {
       }
       <Action
         name="add"
-        styles={main_add}
+        styles={main_create}
         handleAction={() => {
           setDisplayCreateModal(true)
         }}
