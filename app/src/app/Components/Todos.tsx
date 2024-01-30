@@ -75,19 +75,25 @@ export default function Todos({todos, handleHideTodos, setTodos}) {
     setTodos(todosUpdated)
   }
 
-  const deleteTodo = (id: number) => {
-    const todosUpdated = todos.map(todo => {
-      if (todo.id === id) {
-        return {
-          ...todo,
-          deleted: true
+  const deleteTodo = (todo: Todo) => {
+    fetch('/api/todo', {
+      method: 'PATCH',
+      body: JSON.stringify(todo)
+    }).then(async (response) => {
+      const id = await response.json()
+      const todosUpdated = todos.map(todo => {
+        if (todo.id === id) {
+          return {
+            ...todo,
+            deleted: true
+          }
         }
-      }
-
-      return todo
+  
+        return todo
+      })
+  
+      setTodos(todosUpdated)
     })
-
-    setTodos(todosUpdated)
   }
 
   const editTodo = (todos: Todos, todoEdited: Todo) => {
@@ -162,7 +168,7 @@ export default function Todos({todos, handleHideTodos, setTodos}) {
             key={id}
             data={todo}
             deleteTodo={() => {
-              deleteTodo(id)
+              deleteTodo(todo)
             }}
             displayEditForm={() => {
               setTodoEditId(id)

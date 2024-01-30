@@ -34,16 +34,21 @@ export async function PUT(request) {
     }
   })
 
-  // Save todo in db
-  //const success = await db.save(id, updated)
-
   return Response.json(updated)
 }
 
-export async function DELETE(request) {
-  const id = await request.json()
-  // delete in db
-  // const success = await db.delete(id)
-  // return success
-  return Response.json("Delete")
+// PATCH /api/todo
+export async function PATCH(request) {
+  const todo = await request.json()
+  const {id, deleted} = todo
+
+  const softDeletedTodo = await prisma.todo.update({
+    where: { id: id },
+    data: {
+      deleted: deleted
+    }
+  })
+
+  return Response.json(softDeletedTodo.id)
+  
 }
