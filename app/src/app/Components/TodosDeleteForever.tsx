@@ -9,7 +9,8 @@ import TodoDeleteForever from "./TodoDeleteForever"
 
 type Todo = {
   id: number
-  date: string
+  dateCreated: string
+  dateModified: string
   description: string
   deleted: boolean
   done: boolean
