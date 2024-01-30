@@ -94,7 +94,10 @@ export default function Todos({todos, handleHideTodos, setTodos}) {
     const { id } = todoEdited
     const todosUpdated = todos.map(todo => {
       return todo.id === id ?
-        todoEdited :
+        { 
+          ...todo,
+          ...todoEdited
+        } :
         todo
     })
 
