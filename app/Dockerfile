@@ -10,4 +10,6 @@ COPY . .
 
 EXPOSE 3000
 
+VOLUME [ "/app" ]
+
 CMD ["npm", "run", "dev", "--", "-H", "0.0.0.0"]
