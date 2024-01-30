@@ -15,13 +15,13 @@ At the root of the project:
 This project includes all frontend, backend, and database code.
 
 ### Frontend
-The frontend code includes everything except the `./src/api` folder
+The frontend code includes everything except the `./app/src/app/api` folder
 
 ### Backend
-The backend code is in `./src/api`
+The backend code is in `./app/src/app/api`
 
 ### Database
-The backend code interacts with the database via the ORM prisma.  The prisma code can be found in its folder `./src/prisma`
+The backend code interacts with the database via the ORM prisma.  The prisma code can be found in its folder `./app/src/app/prisma`
 
 This is where the db seed file (`seed.ts`) is and the db schema file (`schema.prisma`).
 
