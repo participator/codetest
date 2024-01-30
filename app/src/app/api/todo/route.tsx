@@ -10,12 +10,13 @@ export async function GET() {
 
 export async function POST(request) {
   const todo = await request.json()
+
   // send todo to db
-  // get id
-  // send id to frontend
+  const created = await prisma.todo.create({
+    data: todo
+  })
 
-  return Response.json(JSON.stringify(todo))
-
+  return Response.json(JSON.stringify(created))
 }
 
 export async function PUT(request) {

@@ -32,10 +32,6 @@ export default function TodoCreate({createTodo, closeCreateTodoModal}) {
         // send to api
         // when successful, update Todo
         createTodo({
-            id: Math.ceil(Math.random() * 100),
-            dateCreate: setDefaultDate(),
-            dateModified: setDefaultDate(),
-            deleted: false,
             description: description,
             title: title,
         })

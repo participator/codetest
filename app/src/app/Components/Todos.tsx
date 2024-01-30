@@ -105,9 +105,14 @@ export default function Todos({todos, handleHideTodos, setTodos}) {
   }
 
   const createTodo = (todos: Todos, todo) => {
-    const newTodos = [...todos, todo]
-
-    setTodos(newTodos)
+    // send to api
+    fetch('/api/todo', {
+      method: "POST",
+      body: JSON.stringify(todo)
+    }).then(newTodo => {
+      const newTodos = [...todos, newTodo]
+      setTodos(newTodos)
+    })
   }
 
   const hideEditForm = () => {
