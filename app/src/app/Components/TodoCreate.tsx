@@ -33,7 +33,8 @@ export default function TodoCreate({createTodo, closeCreateTodoModal}) {
         // when successful, update Todo
         createTodo({
             id: Math.ceil(Math.random() * 100),
-            date: setDefaultDate(),
+            dateCreate: setDefaultDate(),
+            dateModified: setDefaultDate(),
             deleted: false,
             description: description,
             title: title,

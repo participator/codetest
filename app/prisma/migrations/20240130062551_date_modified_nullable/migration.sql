@@ -1,3 +1,0 @@
--- AlterTable
-ALTER TABLE "Todo" ALTER COLUMN "dateModified" DROP NOT NULL,
-ALTER COLUMN "dateModified" SET DEFAULT NULL;

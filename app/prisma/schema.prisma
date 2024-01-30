@@ -14,5 +14,5 @@ model Todo {
   done         Boolean   @default(false)
   deleted      Boolean   @default(false)
   dateCreated  DateTime  @default(dbgenerated("CURRENT_DATE")) @db.Date
-  dateModified DateTime? @default(dbgenerated("NULL")) @db.Date
+  dateModified DateTime  @default(dbgenerated("CURRENT_DATE")) @db.Date
 }

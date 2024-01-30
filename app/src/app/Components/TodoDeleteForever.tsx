@@ -25,8 +25,7 @@ export default function TodosDeleteForever({
     handleMultiSelect
 }) {
     const [displayDescription, setDisplayDescription] = useState(false)
-    const { dateCreated, dateModified, description, done, title} = data
-    const dateShown = dateModified ?? dateCreated
+    const { dateModified, description, done, title} = data
 
     const formatDate = (date) => {
         const dateObject = new Date(date)
@@ -44,7 +43,7 @@ export default function TodosDeleteForever({
             <span className={`material-symbols-outlined ${todo_done}`}>{done ? "check" : "close"}</span>
             <div className={todo_details}>
                 <p className={todo_details_title}>{title}</p>
-                <p className={todo_details_date}>{formatDate(dateShown)}</p>
+                <p className={todo_details_date}>{formatDate(dateModified)}</p>
             </div>
             <div className={todo_actions}>
                 <div>
