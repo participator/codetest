@@ -68,11 +68,17 @@ export default function TodosDeleteForever({todos, handleDisplayTodos, setTodos}
   }
 
   const deleteTodo = (id: number) => {
-    const todosUpdated = todos.filter(todo => {
-        return todo.id !== id
+    fetch('/api/trash', {
+      method: "DELETE",
+      body: JSON.stringify(id)
+    }).then(async (response) => {
+      const { id } = await response.json()
+      const todosUpdated = todos.filter(todo => {
+          return todo.id !== id
+      })
+  
+      setTodos(todosUpdated)
     })
-
-    setTodos(todosUpdated)
   }
 
   const restoreTodo = (id: number) => {
