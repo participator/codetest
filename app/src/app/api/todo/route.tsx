@@ -1,4 +1,6 @@
-import prisma from "../../../../prisma/lib/prisma"
+// import prisma from "../../../../prisma/lib/prisma"
+import { PrismaClient } from '@prisma/client'
+const prisma = new PrismaClient()
 
 // GET /api/todo
 export async function GET() {
