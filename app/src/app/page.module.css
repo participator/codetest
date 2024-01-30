@@ -19,8 +19,7 @@
 }
 .main_create {
     font-size: 2.5rem;
-    margin-right: 4rem;
-    position: absolute;
-    right: 0;
-    bottom: 0;
+    position: fixed;
+    right: 4vw;
+    bottom: 2vw;
 }
