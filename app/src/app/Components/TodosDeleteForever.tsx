@@ -50,21 +50,26 @@ export default function TodosDeleteForever({todos, handleDisplayTodos, setTodos}
   }
 
   const deleteMultiSelectTodos = () => {
-    const todosToDeleteUpdated = new Set(todosToDelete)
-    const todosUpdated = todos.filter(todo => {
-      const {id} = todo
-      let keep = true
+    fetch("/api/todos", {
+      method: "DELETE",
+      body: JSON.stringify([...todosToDelete])
+    }).then(async (response) => {
+      const todosToDeleteUpdated = new Set(todosToDelete)
+      const todosUpdated = todos.filter(todo => {
+        const {id} = todo
+        let keep = true
+        
+        if (todosToDelete.has(id)) {
+          todosToDeleteUpdated.delete(id)
+          keep = false 
+        }
+        
+        return keep
+      })
       
-      if (todosToDelete.has(id)) {
-        todosToDeleteUpdated.delete(id)
-        keep = false 
-      }
-      
-      return keep
+      setTodosToDelete(todosToDeleteUpdated)
+      setTodos(todosUpdated)
     })
-    
-    setTodosToDelete(todosToDeleteUpdated)
-    setTodos(todosUpdated)
   }
 
   const deleteTodo = (id: number) => {

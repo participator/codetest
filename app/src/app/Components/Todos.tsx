@@ -55,24 +55,29 @@ export default function Todos({todos, handleHideTodos, setTodos}) {
   }
 
   const deleteMultiSelectTodos = () => {
-    const todosToDeleteUpdated = new Set(todosToDelete)
-    const todosUpdated = todos.map(todo => {
-      const {id} = todo
-      
-      if (todosToDelete.has(id)) {
-        todosToDeleteUpdated.delete(id)
+    fetch("/api/todos", {
+      method: "PATCH",
+      body: JSON.stringify([...todosToDelete])
+    }).then(async (response) => {
+      const todosToDeleteUpdated = new Set(todosToDelete)
+      const todosUpdated = todos.map(todo => {
+        const {id} = todo
         
-        return {
-          ...todo,
-          deleted: true
+        if (todosToDelete.has(id)) {
+          todosToDeleteUpdated.delete(id)
+          
+          return {
+            ...todo,
+            deleted: true
+          }
         }
-      }
+        
+        return todo
+      })
       
-      return todo
+      setTodosToDelete(todosToDeleteUpdated)
+      setTodos(todosUpdated)
     })
-    
-    setTodosToDelete(todosToDeleteUpdated)
-    setTodos(todosUpdated)
   }
 
   const deleteTodo = (id: number) => {
