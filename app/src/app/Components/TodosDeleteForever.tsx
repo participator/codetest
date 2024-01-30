@@ -82,18 +82,24 @@ export default function TodosDeleteForever({todos, handleDisplayTodos, setTodos}
   }
 
   const restoreTodo = (id: number) => {
-    const todosUpdated = todos.map(todo => {
-        if (todo.id === id) {
-            return {
-                ...todo,
-                deleted: false
-            }
-        }
-
-        return todo
+    fetch('/api/trash', {
+      method: "PATCH",
+      body: JSON.stringify(id)
+    }).then(async (response) => {
+      const { id } = await response.json()
+      const todosUpdated = todos.map(todo => {
+          if (todo.id === id) {
+              return {
+                  ...todo,
+                  deleted: false
+              }
+          }
+  
+          return todo
+      })
+      
+      setTodos(todosUpdated)
     })
-    
-    setTodos(todosUpdated)
   }
 
   return (

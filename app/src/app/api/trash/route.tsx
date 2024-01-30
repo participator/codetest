@@ -1,6 +1,6 @@
 import prisma from "../../../../prisma/lib/prisma"
 
-// DELETE /api/todo
+// DELETE /api/trash
 export async function DELETE(request) {
     const id = await request.json()
     // Get todos from db
@@ -10,4 +10,17 @@ export async function DELETE(request) {
     })
 
     return Response.json(todoDeleted)
+}
+
+// PATCH /api/trash
+export async function PATCH(request) {
+    const id = await request.json()
+
+    const todoRestored = await prisma.todo.update({
+        where: { id: id },
+        select: { id: true},
+        data: { deleted: false }
+    })
+
+    return Response.json(todoRestored)
 }
