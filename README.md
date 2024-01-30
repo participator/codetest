@@ -35,6 +35,7 @@ This is where the db seed file (`seed.ts`) is and the db schema file (`schema.pr
 - [ORM Prisma Docs](https://www.prisma.io/docs/getting-started)
 - [Prisma in NextJS Examples](https://github.com/prisma/prisma-examples/blob/latest/typescript/rest-nextjs-api-routes/src/pages/api/filterPosts.ts)
 - [Docker: How to use postgres, adminer, & node in containers](https://hub.docker.com/_/postgres)
+- [Prisma Generate Client during Build](https://www.prisma.io/docs/orm/prisma-client/deployment/serverless/deploy-to-vercel#:~:text=Generate%20Prisma%20during%20build&text=This%20will%20re%2Dgenerate%20Prisma,missing%20prisma%20in%20your%20dependencies.)
 
 ## Extras
 
