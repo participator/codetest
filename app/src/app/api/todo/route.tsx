@@ -1,33 +1,44 @@
-// import prisma from "../../../../prisma/lib/prisma"
-import { PrismaClient } from '@prisma/client'
-const prisma = new PrismaClient()
+import prisma from "../../../../prisma/lib/prisma"
 
 // GET /api/todo
 export async function GET() {
-  // Get todos from db
-  const todos = await prisma.todo.findMany()
+  let todos
+
+  try {
+    todos = await prisma.todo.findMany()
+  } catch (error) {
+    return Response.json(error)
+  }
 
   return Response.json(todos)
 }
 
 // POST /api/todo
 export async function POST(request) {
-  const todo = await request.json()
+  let created
 
-  // send todo to db
-  const created = await prisma.todo.create({
-    data: todo
-  })
+  try {
+    const todo = await request.json()
+
+    created = await prisma.todo.create({
+      data: todo
+    })
+  } catch (error) {
+    return Response.json(error)
+  }
 
   return Response.json(JSON.stringify(created))
 }
 
 // PUT /api/todo
 export async function PUT(request) {
-  const todo = await request.json()
+  let updated
+
+  try {
+    const todo = await request.json()
   const {id} = todo
 
-  const updated = await prisma.todo.update({
+  updated = await prisma.todo.update({
     where: { id: id},
     data: {
       ...todo,
@@ -35,20 +46,31 @@ export async function PUT(request) {
       dateModified: new Date(todo.dateModified)
     }
   })
+  } catch (error) {
+    return Response.json(error)
+  }
+
+  
 
   return Response.json(updated)
 }
 
 // PATCH /api/todo
 export async function PATCH(request) {
-  const id = await request.json()
+  let softDeletedTodo
 
-  const softDeletedTodo = await prisma.todo.update({
-    where: { id: id },
-    data: {
-      deleted: true
-    }
-  })
+  try {
+    const id = await request.json()
+    
+    softDeletedTodo = await prisma.todo.update({
+      where: { id: id },
+      data: {
+        deleted: true
+      }
+    })
+  } catch (error) {
+    return Response.json(error)
+  }
 
   return Response.json(softDeletedTodo.id)
   
