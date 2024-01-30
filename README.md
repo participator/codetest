@@ -49,8 +49,9 @@ If you find that you have completed the earlier items with time to spare, please
 
 #### Suggestions for improvements
 1. Add tooltips for each action icon
-1. Make the app responsive to various screen sizes
+1. Allow app to be responsive to various screen sizes
 1. Write tests
+1. Connect server side debugging tool
 
 ## About
 
