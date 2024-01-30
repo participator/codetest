@@ -7,7 +7,8 @@ import styles from "./page.module.css"
 
 type Todo = {
   id: number
-  date: string
+  dateCreated: string
+  dateModified: string
   description: string
   deleted: boolean
   done: boolean
@@ -28,7 +29,7 @@ export default function Home() {
     fetch('/api/todo')
       .then(async (response) => {
         const data = await response.json()
-        
+
         setTodos(data)
       })
   }, [todos.length])

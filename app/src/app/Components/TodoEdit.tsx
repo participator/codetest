@@ -19,7 +19,7 @@ export default function TodoEdit({ id, todos, editTodo, hideEditForm }) {
     const todo = todos.filter(todo => todo.id === id)[0]
     const [formData, setFormData] = useState({
         done: todo.done,
-        date: todo.date,
+        dateModified: todo.dateModified || todo.dateCreated,
         description: todo.description,
         title: todo.title,
     })
@@ -28,20 +28,20 @@ export default function TodoEdit({ id, todos, editTodo, hideEditForm }) {
         let { name, value } = target
 
         if (name !== 'done') {
-            setFormData(prevFormData => ({ ...prevFormData, [name]: value, date: setDefaultDate() }))
+            setFormData(prevFormData => ({ ...prevFormData, [name]: value, dateModified: setDefaultDate() }))
         }
     }
 
     const handleStatusChange = ({ target }) => {
         let { name, checked } = target
 
-        setFormData(prevFormData => ({ ...prevFormData, [name]: checked, date: setDefaultDate() }))
+        setFormData(prevFormData => ({ ...prevFormData, [name]: checked, dateModified: setDefaultDate() }))
     }
 
     const saveEdits = () => {
         const {
             done,
-            date,
+            dateModified,
             description,
             title,
         } = formData
@@ -50,7 +50,7 @@ export default function TodoEdit({ id, todos, editTodo, hideEditForm }) {
         const todoEdited = {
             id,
             done,
-            date,
+            dateModified,
             deleted: false,
             description,
             title

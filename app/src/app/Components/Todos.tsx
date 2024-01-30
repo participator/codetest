@@ -11,7 +11,8 @@ import Create from "./TodoCreate"
 
 type Todo = {
   id: number
-  date: string
+  dateCreated: string
+  dateModified: string
   description: string
   deleted: boolean
   done: boolean
