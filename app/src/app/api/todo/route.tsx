@@ -39,13 +39,12 @@ export async function PUT(request) {
 
 // PATCH /api/todo
 export async function PATCH(request) {
-  const todo = await request.json()
-  const {id, deleted} = todo
+  const id = await request.json()
 
   const softDeletedTodo = await prisma.todo.update({
     where: { id: id },
     data: {
-      deleted: deleted
+      deleted: true
     }
   })
 

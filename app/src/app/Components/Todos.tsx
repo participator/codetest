@@ -75,10 +75,10 @@ export default function Todos({todos, handleHideTodos, setTodos}) {
     setTodos(todosUpdated)
   }
 
-  const deleteTodo = (todo: Todo) => {
+  const deleteTodo = (id: number) => {
     fetch('/api/todo', {
       method: 'PATCH',
-      body: JSON.stringify(todo)
+      body: JSON.stringify(id)
     }).then(async (response) => {
       const id = await response.json()
       const todosUpdated = todos.map(todo => {
@@ -168,7 +168,7 @@ export default function Todos({todos, handleHideTodos, setTodos}) {
             key={id}
             data={todo}
             deleteTodo={() => {
-              deleteTodo(todo)
+              deleteTodo(id)
             }}
             displayEditForm={() => {
               setTodoEditId(id)
