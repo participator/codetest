@@ -6,7 +6,9 @@ services:
       - 3000:3000
       - 5555:5555
     environment:
-      - DATABASE_URL=postgresql://postgres:todos@db:5432/todos?schema=public
+    #   - DATABASE_URL=postgresql://postgres:todos@db:5432/todos?schema=public # local db
+      - POSTGRES_PRISMA_URL=
+      - POSTGRES_URL_NON_POOLING=
     # volumes:
     #   - ./app:/usr/src/app
   
