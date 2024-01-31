@@ -52,6 +52,8 @@ If you find that you have completed the earlier items with time to spare, please
 1. Allow app to be responsive to various screen sizes
 1. Write tests
 1. Connect server side debugging tool
+1. Save todos in browser (localStorage or IndexDB) to allow app to work when discounted from internet
+1. Add users
 
 ## About
 
@@ -62,7 +64,13 @@ This application uses NextJS and Postgres (with Prisma).
 ### Getting Started
 The best way to run this project is with Docker Compose.
 
+#### Use local database
 At the root of the project:
+1. Open `docker-compose.yml` file
+    1. Uncomment line 8, `environment:` and line 9 `- DATABASE_URL=`
+1. Open `prisma/schema.prisma`
+    1. Uncomment line 7 with `env("DATABASE_URL")`
+    1. Comments line 8 with `env("POSTGRES_PRISMA_URL")` and line 9 with `env("POSTGRES_URL_NON_POOLING")`
 1. Run `docker compose up` to run and see logs
 1. or run `docker compose up -d` to run only
 
