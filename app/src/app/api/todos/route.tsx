@@ -2,40 +2,39 @@ import prisma from "../../../../prisma/lib/prisma"
 
 // PATCH /api/todos
 export async function PATCH(request) {
-  let todosUpdatedCount
   try {
     const ids = await request.json()
-    
-    todosUpdatedCount = await prisma.todo.updateMany({
-        where: { 
-            id: { in: ids }
-        },
-        data: {
-            deleted: true
-        }
-    })    
+
+    const todosUpdatedCount = await prisma.todo.updateMany({
+      where: {
+        id: { in: ids }
+      },
+      data: {
+        deleted: true
+      }
+    })
+
+    return Response.json(todosUpdatedCount)
   } catch (error) {
-    return Response.json(error)
+    return Response.error()
   }
 
-  return Response.json(todosUpdatedCount)
 }
 
 // DELETE /api/todos
 export async function DELETE(request) {
-  let todosDeletedCount
-  
   try {
     const ids = await request.json()
-    
-    todosDeletedCount = await prisma.todo.deleteMany({
-      where: { 
-          id: { in: ids }
+
+    const todosDeletedCount = await prisma.todo.deleteMany({
+      where: {
+        id: { in: ids }
       }
     })
+
+    return Response.json(todosDeletedCount)
   } catch (error) {
-    return Response.json(error)
+    return Response.error()
   }
 
-  return Response.json(todosDeletedCount)
 }
