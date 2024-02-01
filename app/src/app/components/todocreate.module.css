@@ -3,7 +3,6 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    z-index: 1;
 }
 .todo_create_form {
     display: flex;
@@ -12,9 +11,13 @@
     background-color: black;
     padding: 1rem;
 }
+.todo_create_form_title {
+    padding: 0.5rem;
+}
 .todo_create_form_description {
     max-height: 10rem;
     max-width: 32rem;
+    padding: 0.5rem;
     height: 40vh;
     width: 80vw;
 }
@@ -22,5 +25,5 @@
     margin-left: auto;
 }
 .todo_create_actions_item {
-    margin: 0 .5rem;
+    margin: 0 0.5rem;
 }

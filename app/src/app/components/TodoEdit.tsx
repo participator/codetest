@@ -16,7 +16,7 @@ const {
     todo_edit_actions_item
 } = styles
 
-export default function TodoEdit({ id, todos, editTodo, hideEditForm }) {
+export default function TodoEdit({ id, todos, editTodo, closeEditTodoModal }) {
     const todo = todos.filter(todo => todo.id === id)[0]
     const [formData, setFormData] = useState({
         done: todo.done,
@@ -59,12 +59,12 @@ export default function TodoEdit({ id, todos, editTodo, hideEditForm }) {
         editTodo(todos, todoEdited)
         
         // return to todos
-        hideEditForm()
+        closeEditTodoModal()
     }
 
     const cancelEdits = () => {
         // return to todos
-        hideEditForm()
+        closeEditTodoModal()
     }
 
     return (

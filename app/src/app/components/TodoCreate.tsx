@@ -6,6 +6,7 @@ import Action from "./Action"
 const {
     todo_create,
     todo_create_form,
+    todo_create_form_title,
     todo_create_form_description,
     todo_create_actions,
     todo_create_actions_item
@@ -49,7 +50,7 @@ export default function TodoCreate({createTodo, closeCreateTodoModal}) {
             <form className={todo_create_form} onChange={handleOnChange}>
                 <h2>Create Todo</h2>
                 <label htmlFor="title">Title</label>
-                <input name="title" maxLength={100} />
+                <input className={todo_create_form_title} name="title" maxLength={100} />
                 <label htmlFor="description">Description</label>
                 <textarea className={todo_create_form_description} name="description" maxLength={500} />
                 <div className={todo_create_actions}>
