@@ -108,3 +108,14 @@ a {
     color-scheme: dark;
   }
 }
+
+.material-symbols-outlined {
+  font-size: 45px;
+}
+
+@media screen and (max-width: 625px) {
+  .material-symbols-outlined {
+    font-size: 35px;
+  }
+  
+}

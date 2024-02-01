@@ -8,7 +8,7 @@ const {
     todo_create_form,
     todo_create_form_description,
     todo_create_actions,
-    todo_create_submit
+    todo_create_actions_item
 } = styles
 
 export default function TodoCreate({createTodo, closeCreateTodoModal}) {
@@ -55,14 +55,15 @@ export default function TodoCreate({createTodo, closeCreateTodoModal}) {
                 <div className={todo_create_actions}>
                     <Action
                         name="add"
-                        styles={todo_create_submit}
+                        styles={todo_create_actions_item}
                         handleAction={handleCreate} 
                         />
                     
                     <Action
-                            name="cancel"
-                            handleAction={handleCreateCancel}
-                            />
+                        name="cancel"
+                        styles={todo_create_actions_item}
+                        handleAction={handleCreateCancel}
+                        />
                 </div>
             </form>
         </div>

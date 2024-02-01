@@ -13,18 +13,14 @@
     padding: 1rem;
 }
 .todo_create_form_description {
-    height: 10rem;
-    width: 32rem;
+    max-height: 10rem;
+    max-width: 32rem;
+    height: 40vh;
+    width: 80vw;
 }
 .todo_create_actions {
     margin-left: auto;
 }
-.todo_create_submit {
-    background-color: transparent;
-    border: 1px solid rgba(128, 128, 128, 0.2);
-    cursor: pointer;
-    text-align: center;
-}
-.todo_create_submit:hover {
-    border: 1px solid rgba(128, 128, 128, 0.6);
+.todo_create_actions_item {
+    margin: 0 .5rem;
 }

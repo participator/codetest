@@ -25,10 +25,15 @@
     margin-bottom: 1rem;
 }
 .todo_edit_details_description {
-    height: 10rem;
-    width: 32rem;
+    max-height: 10rem;
+    max-width: 32rem;
+    height: 40vh;
+    width: 80vw;
 }
 .todo_edit_actions {
     padding: 0.5rem;
     text-align: right;
+}
+.todo_edit_actions_item {
+    margin: 0 .5rem;
 }

@@ -12,7 +12,8 @@ const {
     todo_edit_details_status,
     todo_edit_details_title,
     todo_edit_details_description,
-    todo_edit_actions
+    todo_edit_actions,
+    todo_edit_actions_item
 } = styles
 
 export default function TodoEdit({ id, todos, editTodo, hideEditForm }) {
@@ -87,10 +88,12 @@ export default function TodoEdit({ id, todos, editTodo, hideEditForm }) {
                 <div className={todo_edit_actions}>
                     <Action
                         name="save"
+                        styles={todo_edit_actions_item}
                         handleAction={saveEdits}
                         />
                     <Action
                         name="cancel"
+                        styles={todo_edit_actions_item}
                         handleAction={cancelEdits}
                         />
                 </div>

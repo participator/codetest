@@ -45,7 +45,6 @@ export default function Todo({
                 <p className={todo_details_date}>{formatDate(dateModified)}</p>
             </div>
             <div className={todo_actions}>
-                <div>
                     <Action 
                         name="edit"
                         handleAction={displayEditForm}
@@ -78,7 +77,6 @@ export default function Todo({
                             }}
                             />
                     }
-                </div>
             </div>
             <p className={`${todo_description} ${displayDescription && todo_description__visible}`}>
                 {description}
