@@ -42,17 +42,14 @@ Create an application to create, view, update, and destroy ‘todo’ items. The
 If you find that you have completed the earlier items with time to spare, please consider adding the following
 
 ### Suggestions for improvements
-* [ ] Deploy your TODO app to the internet so we can see it in action
-* [ ] Test it on Mobile device sizes.
+* [x] Deploy your TODO app to the internet so we can see it in action
+* [x] Test it on Mobile device sizes.
 * [ ] Write unit tests for your code.
 * [ ] Edit this ReadMe with new suggestions for how to improve this code test
 
 #### Suggestions for improvements
 1. Add tooltips for each action icon
-1. Allow app to be responsive to various screen sizes
-1. Write tests
-1. Connect server side debugging tool
-1. Save todos in browser (localStorage or IndexDB) to allow app to work when discounted from internet
+1. Save todos in browser (localStorage or IndexDB) to allow app to work when disconnected from internet
 1. Add users
 
 ## About
