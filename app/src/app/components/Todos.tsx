@@ -137,7 +137,7 @@ export default function Todos({todos, handleHideTodos, setTodos}) {
     })
   }
 
-  const hideEditForm = () => {
+  const closeEditTodoModal = () => {
     setTodoEditId(null)
   }
 
@@ -209,7 +209,7 @@ export default function Todos({todos, handleHideTodos, setTodos}) {
             id={todoEditId}
             todos={todos}
             editTodo={editTodo}
-            hideEditForm={hideEditForm}
+            closeEditTodoModal={closeEditTodoModal}
           />
         </Modal>
       }
