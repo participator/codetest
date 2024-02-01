@@ -4,6 +4,7 @@
     padding: 4rem;
     position: relative;
     max-width: 800px;
+    width: 100vw;;
 }
 .main_heading {
     font-size: 3.5rem;
