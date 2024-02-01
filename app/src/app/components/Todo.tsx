@@ -24,7 +24,7 @@ export default function Todo({
     setDisplayMultiSelectChecked,
     handleMultiSelect }) {
     const [displayDescription, setDisplayDescription] = useState(false)
-    const { dateModified, description, done, title} = data
+    const { dateModified, description, done, title } = data
 
     const formatDate = (date) => {
         const dateObject = new Date(date)
@@ -39,55 +39,55 @@ export default function Todo({
 
     return (
         <div className={`${todo} ${displayDescription && todo__description}`}>
-            <span className={`material-symbols-outlined ${todo_done}`}>{ done ? "check" : "close" }</span>
+            <span className={`material-symbols-outlined ${todo_done}`}>{done ? "check" : "close"}</span>
             <div className={todo_details}>
                 <p className={todo_details_title}>{title}</p>
                 <p className={todo_details_date}>{formatDate(dateModified)}</p>
             </div>
             <div className={todo_actions}>
-                    <Action 
-                        name="edit"
-                        handleAction={displayEditForm}
-                        />
-                    <Action 
-                        name="delete"
-                        handleAction={deleteTodo}
-                        />
-                    {
-                        displayMultiSelect && 
-                        displayMultiSelectChecked() &&
-                        <Action 
-                            name="check_box"
-                            handleAction={() => {
-                                    const nextState = false
-                                    setDisplayMultiSelectChecked(nextState)
-                                    handleMultiSelect(false)
-                            }}
-                            />
-                    }
-                    {
-                        displayMultiSelect && 
-                        !displayMultiSelectChecked() &&
-                        <Action 
-                            name="check_box_outline_blank"
-                            handleAction={() => {
-                                    const nextState = true
-                                    setDisplayMultiSelectChecked(nextState)
-                                    handleMultiSelect(true)
-                            }}
-                            />
-                    }
+                <Action
+                    name="edit"
+                    handleAction={displayEditForm}
+                />
+                <Action
+                    name="delete"
+                    handleAction={deleteTodo}
+                />
+                {
+                    displayMultiSelect &&
+                    displayMultiSelectChecked() &&
+                    <Action
+                        name="check_box"
+                        handleAction={() => {
+                            const nextState = false
+                            setDisplayMultiSelectChecked(nextState)
+                            handleMultiSelect(false)
+                        }}
+                    />
+                }
+                {
+                    displayMultiSelect &&
+                    !displayMultiSelectChecked() &&
+                    <Action
+                        name="check_box_outline_blank"
+                        handleAction={() => {
+                            const nextState = true
+                            setDisplayMultiSelectChecked(nextState)
+                            handleMultiSelect(true)
+                        }}
+                    />
+                }
             </div>
             <p className={`${todo_description} ${displayDescription && todo_description__visible}`}>
                 {description}
             </p>
             <Action
                 styles={todo_expand}
-                name={`${ displayDescription ? "expand_less" : "expand_more" }`}
+                name={`${displayDescription ? "expand_less" : "expand_more"}`}
                 handleAction={() => {
                     displayDescription ? setDisplayDescription(false) : setDisplayDescription(true)
                 }}
-                />
+            />
         </div>
     )
 }
